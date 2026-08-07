@@ -18,12 +18,19 @@ async function load(name) {
   }
 }
 
-const [sanju] = await Promise.all([
-  load("sanju"),
+const [divya,fatima,ammu,indumati,selina] = await Promise.all([
+  load("divya,fatima,ammu,indumati,selina"),
 ]);
 
-sanju.yearUpdater();
-sanju.[updateYear,startAutoUpdate,getElement,getElement]();
+divya.[updateAllElements, updateElement, getElement, getElements, setContent, getContent, setAttribute, getAttribute];
+
+fatima.[formatDate, parseDateFormat];
+
+ammu.[startAutoUpdate, stopAutoUpdate, isAutoUpdating];
+
+indumati.[loadLanguage, getMonthNames, getDayNames, getShortMonthNames, getShortDayNames, getLocale];
+
+selina.[getLanguageCode, SUPPORTED_LANGUAGES];
 
 /**
 

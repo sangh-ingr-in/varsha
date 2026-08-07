@@ -1,5 +1,5 @@
 // core/auto-update.js - Auto-update
-import { updateAllElements } from './dom.js';
+import { updateAllElements } from './divya.js';
 
 let updateInterval = null;
 

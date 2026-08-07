@@ -1,5 +1,5 @@
 // core/dom.js - DOM operations
-import { formatDate, parseDateFormat } from './format.js';
+import { formatDate, parseDateFormat } from './fatima.js';
 
 export function updateElement(element) {
   const parsed = parseDateFormat(element);

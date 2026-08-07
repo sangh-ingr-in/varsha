@@ -1,4 +1,28 @@
 // app.js - Application entry point
+const files = {
+  sanju: ["./sanju.js.js", "https://www.abc.com/js/abc.js"]
+};
+
+async function load(name) {
+  const [local, remote] = files[name];
+
+  try {
+    return await import(local);
+  } catch {
+    return await import(remote);
+  }
+}
+
+const [sanju] = await Promise.all([
+  load("sanju"),
+]);
+
+sanju.yearUpdater();
+sanju.[updateYear,startAutoUpdate,getElement,getElement]();
+
+
+
+
 import yearUpdater from './sanju.js';
 import { updateYear, startAutoUpdate, getElement, setContent } from './sanju.js';
 

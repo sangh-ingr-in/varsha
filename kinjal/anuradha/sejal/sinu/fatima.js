@@ -1,7 +1,41 @@
-// core/format.js - Date formatting core
-import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from '../punam/indumati.js';
+// fatima.js - Date formatting core
+const files = {
+  indumati: ["./../punam/indumati.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/punam/indumati.js"]
+};
+
+async function load(name) {
+  const [local, remote] = files[name];
+
+  try {
+    return await import(local);
+  } catch (error) {
+    console.warn(`Failed to load ${local}, trying remote:`, error);
+    return await import(remote);
+  }
+}
+
+const [indumati] = await Promise.all([
+  load("indumati")
+]);
+
+const {
+  getMonthNames,
+  getDayNames,
+  getShortMonthNames,
+  getShortDayNames
+} = indumati;
 
 export function formatDate(date, format, lang = 'en') {
+  // Validate date
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+  }
+  
+  if (isNaN(date.getTime())) {
+    console.warn('formatDate: Invalid date');
+    return '';
+  }
+
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();

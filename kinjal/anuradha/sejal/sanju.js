@@ -1,7 +1,7 @@
 // yearUpdater.js - Main entry point
 import { updateAllElements, updateElement, getElement, getElements, setContent, getContent, setAttribute, getAttribute } from './core/dom.js';
 import { formatDate, parseDateFormat } from './core/format.js';
-import { startAutoUpdate, stopAutoUpdate, isAutoUpdating } from './core/auto-update.js';
+import { startAutoUpdate, stopAutoUpdate, isAutoUpdating } from './punam/ammu.js';
 import { loadLanguage, getMonthNames, getDayNames, getShortMonthNames, getShortDayNames, getLocale } from './languages/index.js';
 import { getLanguageCode, SUPPORTED_LANGUAGES } from './languages/base.js';
 

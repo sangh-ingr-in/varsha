@@ -1,6 +1,6 @@
 // app.js - Application entry point
-import yearUpdater from './yearUpdater.js';
-import { updateYear, startAutoUpdate, getElement, setContent } from './yearUpdater.js';
+import yearUpdater from './sanju.js';
+import { updateYear, startAutoUpdate, getElement, setContent } from './sanju.js';
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {

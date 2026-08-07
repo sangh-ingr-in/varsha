@@ -1,5 +1,5 @@
 // core/format.js - Date formatting core
-import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from '../languages/index.js';
+import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from '../punam/indumati.js';
 
 export function formatDate(date, format, lang = 'en') {
   const year = date.getFullYear();

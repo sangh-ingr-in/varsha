@@ -21,10 +21,12 @@ sanju.yearUpdater();
 sanju.[updateYear,startAutoUpdate,getElement,getElement]();
 
 
-
+/**
 
 import yearUpdater from './sanju.js';
 import { updateYear, startAutoUpdate, getElement, setContent } from './sanju.js';
+
+**/
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {

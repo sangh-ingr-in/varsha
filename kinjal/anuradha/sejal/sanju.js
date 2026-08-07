@@ -2,8 +2,8 @@
 import { updateAllElements, updateElement, getElement, getElements, setContent, getContent, setAttribute, getAttribute } from './sinu/divya.js';
 import { formatDate, parseDateFormat } from './sinu/fatima.js';
 import { startAutoUpdate, stopAutoUpdate, isAutoUpdating } from './divya/ammu.js';
-import { loadLanguage, getMonthNames, getDayNames, getShortMonthNames, getShortDayNames, getLocale } from './languages/index.js';
-import { getLanguageCode, SUPPORTED_LANGUAGES } from './languages/base.js';
+import { loadLanguage, getMonthNames, getDayNames, getShortMonthNames, getShortDayNames, getLocale } from './punam/indumati.js';
+import { getLanguageCode, SUPPORTED_LANGUAGES } from './punam/selina.js';
 
 // Main export function - maintains backward compatibility
 export function updateYear() {

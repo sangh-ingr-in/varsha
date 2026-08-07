@@ -1,6 +1,6 @@
 // app.js - Application entry point
 const files = {
-  sanju: ["./sanju.js.js", "https://www.abc.com/js/abc.js"]
+  sanju: ["./sanju.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sanju.js"]
 };
 
 async function load(name) {

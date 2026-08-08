@@ -6,7 +6,7 @@
 
 Create new language files in this directory following this template:
 
-## `languages/xx.js` - [Language Name]
+## kinjal/anuradha/sejal/punam/xx.js` - [Language Name]
 
 ```javascript
 // languages/xx.js - [Language Name]

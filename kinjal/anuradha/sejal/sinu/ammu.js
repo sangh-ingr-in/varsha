@@ -1,6 +1,6 @@
 // sinu/ammu.js - Auto-update
 const files = {
-  divya: ["./divya.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/divya.js"]
+  divya: ["./divya.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/divya.js"]
 };
 
 async function load(name) {

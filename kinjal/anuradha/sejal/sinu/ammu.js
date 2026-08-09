@@ -1,31 +1,6 @@
 // sinu/ammu.js - Auto-update
-const files = {
-  divya: ["./divya.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/divya.js"]
-};
+import load from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/divya.js"
 
-async function load(name) {
-  const [local, remote] = files[name];
-
-  try {
-    return await import(local);
-  } catch (error) {
-    console.warn(`Failed to load ${local}, trying remote:`, error);
-    return await import(remote);
-  }
-}
-
-// Load divya module with error handling
-let divyaModule = null;
-let updateInterval = null;
-
-try {
-  const [divya] = await Promise.all([
-    load("divya")
-  ]);
-  divyaModule = divya;
-} catch (error) {
-  console.error('Failed to load divya module:', error);
-}
 
 // Only destructure if divya loaded successfully
 const {

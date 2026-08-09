@@ -1,5 +1,5 @@
 // anita.js - Browser Entry Point with Copy Functionality
-import { startAutoUpdate, updateAllElements, SUPPORTED_LANGUAGES } from "./kinjal/anuradha/sejal/sanju.js";
+import { startAutoUpdate, updateAllElements, SUPPORTED_LANGUAGES } from "https://varsha.ingr.in/kinjal/anuradha/sejal/sanju.js";
 //import { startAutoUpdate, updateAllElements, SUPPORTED_LANGUAGES } from "./sanju.js";
 // ============================================
 // COPY BUTTON FUNCTIONALITY

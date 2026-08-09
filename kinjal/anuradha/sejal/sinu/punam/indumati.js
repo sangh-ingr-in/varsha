@@ -5,7 +5,7 @@ const languageCache = new Map();
 // Define supported languages
 
 // Fetch JSON file from server
-const response = await fetch('https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/bhasha.suchi.json');
+const response = await fetch('https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/bhasha/suchi.json');
 const languagesArray = await response.json();
 export const SUPPORTED_LANGUAGES = languagesArray;// Generate short names from full names (first 3 characters or custom logic)
 function generateShortNames(fullNames, isDay = false) {

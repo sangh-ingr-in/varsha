@@ -1,7 +1,7 @@
 // languages/base.js - Base language configuration
 
 // Fetch JSON file from server
-const response = await fetch('https:///kinjal/anuradha/sejal/sinu/punam/bhasha.suchi.json');
+const response = await fetch('https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/bhasha/suchi.json');
 const languagesArray = await response.json();
 export const LANGUAGE_MAP = languagesArray;
 /**

@@ -4,7 +4,7 @@ const files = {
   fatima: ["./sinu/fatima.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/fatima.js"],
   ammu: ["./sinu/ammu.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/ammu.js"],
   indumati: ["./punam/indumati.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/indumati.js"],
-  selina: ["./punam/selina.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/punam/sinu/selina.js"]
+  selina: ["./punam/selina.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/selina.js"]
 };
 
 async function load(name) {

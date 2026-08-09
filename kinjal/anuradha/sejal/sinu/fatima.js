@@ -1,5 +1,5 @@
 // fatima.js - Date Formatting Core
-import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from "./kinjal/anuradha/sejal/sinu/punam/bhasha/indumati.js";
+import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/bhasha/indumati.js";
 //import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from "./indumati.js";
 
 // Load SANKHYA_NUMBERS from language data

@@ -13,7 +13,7 @@ import {
   getLocale,
   getLanguageCode,
   SUPPORTED_LANGUAGES  // This is now exported properly
-} from "./indumati.js";
+} from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/indumati.js";
 
 // DOM helper functions
 export function getElement(selector) {

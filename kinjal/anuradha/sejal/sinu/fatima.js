@@ -1,33 +1,37 @@
-// fatima.js - Date formatting core with Custom Element support
+// fatima.js - Date Formatting Core
+import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from "./kinjal/anuradha/sejal/sinu/bhasha/indumati.js";
+//import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from "./indumati.js";
 
-const files = {
-  indumati: ["./../punam/indumati.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/punam/indumati.js"]
-};
-
-async function load(name) {
-  const [local, remote] = files[name];
-
+// Load SANKHYA_NUMBERS from language data
+async function getSankhyaNumbers(lang) {
   try {
-    return await import(local);
-  } catch (error) {
-    console.warn(`Failed to load ${local}, trying remote:`, error);
-    return await import(remote);
+    const response = await fetch(`./${lang}.json`);
+    if (!response.ok) return null;
+    const data = await response.json();
+    return data.SANKHYA_NUMBERS || null;
+  } catch {
+    return null;
   }
 }
 
-const [indumati] = await Promise.all([
-  load("indumati")
-]);
+// Convert number to localized digits
+function toLocalDigits(num, sankhyaNumbers) {
+  if (!sankhyaNumbers) return String(num);
+  const str = String(num);
+  let result = '';
+  for (const char of str) {
+    const digit = parseInt(char, 10);
+    if (!isNaN(digit) && digit >= 0 && digit <= 9) {
+      result += sankhyaNumbers[digit] || char;
+    } else {
+      result += char;
+    }
+  }
+  return result;
+}
 
-const {
-  getMonthNames,
-  getDayNames,
-  getShortMonthNames,
-  getShortDayNames
-} = indumati;
-
-export function formatDate(date, format, lang = 'en') {
-  // Validate date
+// Format date with language support
+export async function formatDate(date, format, lang = 'sr') {
   if (!(date instanceof Date)) {
     date = new Date(date);
   }
@@ -44,161 +48,85 @@ export function formatDate(date, format, lang = 'en') {
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
   
-  // Get localized names
-  const monthNames = getMonthNames(lang);
-  const dayNames = getDayNames(lang);
-  const shortMonthNames = getShortMonthNames(lang);
-  const shortDayNames = getShortDayNames(lang);
-  
-  const monthName = monthNames[month] || monthNames[0];
-  const monthShort = shortMonthNames[month] || shortMonthNames[0];
-  const dayName = dayNames[date.getDay()] || dayNames[0];
-  const dayShort = shortDayNames[date.getDay()] || shortDayNames[0];
-  
-  // Pad numbers
-  const pad = (num) => String(num).padStart(2, '0');
-  
-  const replacements = {
-    'YYYY': year,
-    'YY': String(year).slice(-2),
-    'MMMM': monthName,
-    'MMM': monthShort,
-    'MM': pad(month + 1),
-    'M': month + 1,
-    'DDDD': dayName,
-    'DDD': dayShort,
-    'DD': pad(day),
-    'D': day,
-    'HH': pad(hours),
-    'H': hours,
-    'hh': pad(hours % 12 || 12),
-    'h': hours % 12 || 12,
-    'mm': pad(minutes),
-    'm': minutes,
-    'ss': pad(seconds),
-    's': seconds,
-    'A': hours >= 12 ? 'PM' : 'AM',
-    'a': hours >= 12 ? 'pm' : 'am'
-  };
-  
-  // Sort replacements by length to prevent partial matches
-  let result = format;
-  const sortedKeys = Object.keys(replacements).sort((a, b) => b.length - a.length);
-  
-  for (const key of sortedKeys) {
-    const value = replacements[key];
-    result = result.replace(new RegExp(key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), value);
+  try {
+    // Get localized names and sankhya numbers
+    const [monthNames, dayNames, shortMonthNames, shortDayNames, sankhyaNumbers] = await Promise.all([
+      getMonthNames(lang),
+      getDayNames(lang),
+      getShortMonthNames(lang),
+      getShortDayNames(lang),
+      getSankhyaNumbers(lang)
+    ]);
+    
+    const monthName = monthNames[month] || monthNames[0];
+    const monthShort = shortMonthNames[month] || shortMonthNames[0];
+    const dayName = dayNames[date.getDay()] || dayNames[0];
+    const dayShort = shortDayNames[date.getDay()] || shortDayNames[0];
+    
+    const pad = (num) => String(num).padStart(2, '0');
+    
+    // Function to format number with localization
+    const fmt = (num) => toLocalDigits(num, sankhyaNumbers);
+    const fmtPad = (num) => toLocalDigits(pad(num), sankhyaNumbers);
+    
+    const replacements = {
+      'YYYY': fmt(year),
+      'YY': fmt(String(year).slice(-2)),
+      'MMMM': monthName,
+      'MMM': monthShort,
+      'MM': fmtPad(month + 1),
+      'M': fmt(month + 1),
+      'DDDD': dayName,
+      'DDD': dayShort,
+      'DD': fmtPad(day),
+      'D': fmt(day),
+      'HH': fmtPad(hours),
+      'H': fmt(hours),
+      'hh': fmtPad(hours % 12 || 12),
+      'h': fmt(hours % 12 || 12),
+      'mm': fmtPad(minutes),
+      'm': fmt(minutes),
+      'ss': fmtPad(seconds),
+      's': fmt(seconds),
+      'A': hours >= 12 ? 'PM' : 'AM',
+      'a': hours >= 12 ? 'pm' : 'am'
+    };
+    
+    let result = format;
+    const sortedKeys = Object.keys(replacements).sort((a, b) => b.length - a.length);
+    
+    for (const key of sortedKeys) {
+      const value = replacements[key];
+      result = result.replace(new RegExp(key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), value);
+    }
+    
+    return result;
+  } catch (error) {
+    console.error('Error formatting date:', error);
+    return '';
   }
-  
-  return result;
 }
 
-// FIXED: parseDateFormat for custom element
+// Parse format string from element
 export function parseDateFormat(element) {
-  // For custom element <varsha shruti="...">
-  const dfAttr = element.getAttribute('shruti');
-  if (!dfAttr) return null;
-  
-  // Parse format: "lang format" or just "format"
-  const parts = dfAttr.trim().split(/\s+/);
-  let lang = 'en';
-  let format = dfAttr.trim();
-  
-  if (parts.length === 2) {
-    lang = parts[0];
-    format = parts[1];
-  } else if (parts.length > 2) {
-    lang = parts[0];
-    format = parts.slice(1).join(' ');
+  if (!element || typeof element.getAttribute !== 'function') return null;
+
+  const value = element.getAttribute('shruti');
+  if (!value || !value.trim()) return null;
+
+  const raw = value.trim();
+  const match = raw.match(/^([a-z]{2})(?:-|:)(.+)$/i);
+
+  let lang = 'sr';
+  let format = raw;
+
+  if (match) {
+    lang = match[1].toLowerCase();
+    format = match[2].trim();
   }
-  
-  return { lang, format };
+
+  return {
+    lang,
+    format: format || 'YYYY-MM-DD'
+  };
 }
-
-// Register Custom Element
-class VarshaElement extends HTMLElement {
-  constructor() {
-    super();
-    this._date = new Date();
-    this._lang = 'en';
-    this._format = 'YYYY-MM-DD';
-  }
-
-  static get observedAttributes() {
-    return ['shruti', 'date'];
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === 'shruti') {
-      this._parseFormat(newValue);
-      this._updateDisplay();
-    } else if (name === 'date') {
-      this._date = new Date(newValue);
-      if (isNaN(this._date.getTime())) {
-        this._date = new Date();
-      }
-      this._updateDisplay();
-    }
-  }
-
-  _parseFormat(value) {
-    if (!value) return;
-    const config = parseDateFormat(this);
-    if (config) {
-      this._lang = config.lang;
-      this._format = config.format;
-    }
-  }
-
-  _updateDisplay() {
-    if (this._format && this._date) {
-      this.textContent = formatDate(this._date, this._format, this._lang);
-    }
-  }
-
-  connectedCallback() {
-    this._parseFormat(this.getAttribute('shruti'));
-    this._updateDisplay();
-  }
-
-  // Method to update date programmatically
-  setDate(date) {
-    this._date = date instanceof Date ? date : new Date(date);
-    if (isNaN(this._date.getTime())) {
-      this._date = new Date();
-    }
-    this._updateDisplay();
-  }
-
-  getDate() {
-    return this._date;
-  }
-}
-
-// Register the custom element
-if (!customElements.get('varsha')) {
-  customElements.define('varsha', VarshaElement);
-}
-
-// Auto-format all existing custom elements
-export function autoFormat() {
-  document.querySelectorAll('varsha[shruti]').forEach(el => {
-    const config = parseDateFormat(el);
-    if (config) {
-      const date = el._date || new Date();
-      el.textContent = formatDate(date, config.format, config.lang);
-    }
-  });
-}
-
-// Auto-format on DOM ready
-if (typeof document !== 'undefined') {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', autoFormat);
-  } else {
-    autoFormat();
-  }
-}
-
-// Export the custom element class
-export { VarshaElement };

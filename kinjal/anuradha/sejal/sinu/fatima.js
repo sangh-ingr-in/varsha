@@ -1,11 +1,11 @@
 // fatima.js - Date Formatting Core
-import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from "./kinjal/anuradha/sejal/sinu/bhasha/indumati.js";
+import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from "./kinjal/anuradha/sejal/sinu/punam/bhasha/indumati.js";
 //import { getMonthNames, getDayNames, getShortMonthNames, getShortDayNames } from "./indumati.js";
 
 // Load SANKHYA_NUMBERS from language data
 async function getSankhyaNumbers(lang) {
   try {
-    const response = await fetch(`./${lang}.json`);
+    const response = await fetch(`https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/bhasha/suchi/${lang}.json`);
     if (!response.ok) return null;
     const data = await response.json();
     return data.SANKHYA_NUMBERS || null;

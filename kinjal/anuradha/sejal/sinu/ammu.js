@@ -1,5 +1,5 @@
 // sinu/ammu.js - Auto-update
-import load from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/divya.js"
+import load from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/divya.js"
 
 
 // Only destructure if divya loaded successfully

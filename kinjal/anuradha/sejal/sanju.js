@@ -3,8 +3,8 @@ const files = {
   divya: ["./sinu/divya.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/divya.js"],
   fatima: ["./sinu/fatima.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/fatima.js"],
   ammu: ["./sinu/ammu.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/ammu.js"],
-  indumati: ["./punam/indumati.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/punam/indumati.js"],
-  selina: ["./punam/selina.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/punam/selina.js"]
+  indumati: ["./punam/indumati.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/indumati.js"],
+  selina: ["./punam/selina.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/punam/sinu/selina.js"]
 };
 
 async function load(name) {

@@ -1,5 +1,5 @@
 // divya.js - Complete Solution
-import { formatDate, parseDateFormat } from "./kinjal/anuradha/sejal/sinu/fatima.js";
+import { formatDate, parseDateFormat } from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/fatima.js";
 //import { formatDate, parseDateFormat } from "./fatima.js";
 
 class VarshaElement extends HTMLElement {

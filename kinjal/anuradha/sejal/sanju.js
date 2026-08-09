@@ -1,148 +1,64 @@
-// yearUpdater.js - Main entry point
-const files = {
-  divya: ["./sinu/divya.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/divya.js"],
-  fatima: ["./sinu/fatima.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/fatima.js"],
-  ammu: ["./sinu/ammu.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/ammu.js"],
-  indumati: ["./punam/indumati.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/indumati.js"],
-  selina: ["./punam/selina.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/selina.js"]
-};
+// sanju.js - Main Entry Point
+// Re-exports all functionality from sub-modules
 
-async function load(name) {
-  const [local, remote] = files[name];
+import { formatDate, parseDateFormat } from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/fatima.js";
+import { VarshaElement, autoFormat } from "./divya.js";
+import { startAutoUpdate, stopAutoUpdate, isAutoUpdating } from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/ammu.js";
+import {
+  loadLanguage,
+  getMonthNames,
+  getDayNames,
+  getShortMonthNames,
+  getShortDayNames,
+  getLocale,
+  getLanguageCode,
+  SUPPORTED_LANGUAGES  // This is now exported properly
+} from "./indumati.js";
 
-  try {
-    return await import(local);
-  } catch {
-    return await import(remote);
+// DOM helper functions
+export function getElement(selector) {
+  if (typeof document === 'undefined') return null;
+  return document.querySelector(selector);
+}
+
+export function getElements(selector) {
+  if (typeof document === 'undefined') return [];
+  return document.querySelectorAll(selector);
+}
+
+export function setContent(element, content) {
+  if (typeof element === 'string') {
+    element = document.querySelector(element);
+  }
+  if (element) {
+    element.textContent = content;
   }
 }
 
-// Fixed: Pass array of promises to Promise.all
-const [divya, fatima, ammu, indumati, selina] = await Promise.all([
-  load("divya"),
-  load("fatima"),
-  load("ammu"),
-  load("indumati"),
-  load("selina")
-]);
-
-// Fixed: Correct property access (no dot before brackets)
-const {
-  updateAllElements, 
-  updateElement, 
-  getElement, 
-  getElements, 
-  setContent, 
-  getContent, 
-  setAttribute, 
-  getAttribute
-} = divya;
-
-const {
-  formatDate, 
-  parseDateFormat
-} = fatima;
-
-const {
-  startAutoUpdate, 
-  stopAutoUpdate, 
-  isAutoUpdating
-} = ammu;
-
-const {
-  loadLanguage, 
-  getMonthNames, 
-  getDayNames, 
-  getShortMonthNames, 
-  getShortDayNames, 
-  getLocale
-} = indumati;
-
-const {
-  getLanguageCode, 
-  SUPPORTED_LANGUAGES
-} = selina;
-
-// Now you can use the imported functions directly
-// Example:
-// updateAllElements();
-// formatDate(new Date());
-// startAutoUpdate();
-/**
-const files = {
-  divya: ["./sinu/divya.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/divya.js"],
-fatima: ["./sinu/fatima", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/fatima.js"],
-ammu: ["./sinu/ammu.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/ammu js"],
-indumati: ["./punam/indumati.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/punam/indumati.js"],
-selina: ["./punam/selina.js", "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/selina"]
-};
-
-async function load(name) {
-  const [local, remote] = files[name];
-
-  try {
-    return await import(local);
-  } catch {
-    return await import(remote);
+export function getContent(element) {
+  if (typeof element === 'string') {
+    element = document.querySelector(element);
   }
+  return element ? element.textContent : '';
 }
 
-const [divya,fatima,ammu,indumati,selina] = await Promise.all([
-  load("divya,fatima,ammu,indumati,selina"),
-]);
+export function updateAllElements() {
+  autoFormat();
+}
 
-divya.[updateAllElements, updateElement, getElement, getElements, setContent, getContent, setAttribute, getAttribute];
-
-fatima.[formatDate, parseDateFormat];
-
-ammu.[startAutoUpdate, stopAutoUpdate, isAutoUpdating];
-
-indumati.[loadLanguage, getMonthNames, getDayNames, getShortMonthNames, getShortDayNames, getLocale];
-
-selina.[getLanguageCode, SUPPORTED_LANGUAGES];
-**/
-
-/**
-
-import { updateAllElements, updateElement, getElement, getElements, setContent, getContent, setAttribute, getAttribute } from './sinu/divya.js';
-
-import { formatDate, parseDateFormat } from './sinu/fatima.js';
-
-import { startAutoUpdate, stopAutoUpdate, isAutoUpdating } from './divya/ammu.js';
-
-import { loadLanguage, getMonthNames, getDayNames, getShortMonthNames, getShortDayNames, getLocale } from './punam/indumati.js';
-
-import { getLanguageCode, SUPPORTED_LANGUAGES } from './punam/selina.js';
-
-**/
-
-// Main export function - maintains backward compatibility
 export function updateYear() {
-  updateAllElements();
+  autoFormat();
 }
 
-// Core exports
+// Export all functionality
 export {
-  // DOM functions
-  updateAllElements,
-  updateElement,
-  getElement,
-  getElements,
-  setContent,
-  getContent,
-  setAttribute,
-  getAttribute,
-  
-  // Format functions
   formatDate,
   parseDateFormat,
-  
-  // Auto-update functions
+  VarshaElement,
+  autoFormat,
   startAutoUpdate,
   stopAutoUpdate,
   isAutoUpdating,
-  
-  // Language functions
   loadLanguage,
   getMonthNames,
   getDayNames,
@@ -162,18 +78,14 @@ if (typeof document !== 'undefined') {
   }
 }
 
+// Default export
 export default {
-  updateYear,
-  updateAllElements,
-  updateElement,
-  getElement,
-  getElements,
-  setContent,
-  getContent,
-  setAttribute,
-  getAttribute,
   formatDate,
   parseDateFormat,
+  VarshaElement,
+  autoFormat,
+  updateAllElements,
+  updateYear,
   startAutoUpdate,
   stopAutoUpdate,
   isAutoUpdating,
@@ -184,5 +96,9 @@ export default {
   getShortDayNames,
   getLocale,
   getLanguageCode,
-  SUPPORTED_LANGUAGES
+  SUPPORTED_LANGUAGES,
+  getElement,
+  getElements,
+  setContent,
+  getContent
 };

@@ -26,7 +26,7 @@ async function loadLanguage(lang = DEFAULT_LANG) {
 
   try {
     // Try to load JSON file
-    const response = await fetch(`./${lang}.json`);
+    const response = await fetch(`.https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/punam/bhasha/suchi/${lang}.json`);
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }

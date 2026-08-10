@@ -1,6 +1,6 @@
 // sanju.js - Main Entry Point
 // Re-exports all functionality from sub-modules
-
+console.log("sedual sanju's");
 import { formatDate, parseDateFormat } from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/fatima.js";
 import { VarshaElement, autoFormat } from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/divya.js";
 import { startAutoUpdate, stopAutoUpdate, isAutoUpdating } from "https://varsha.ingr.in/kinjal/anuradha/sejal/sinu/ammu.js";

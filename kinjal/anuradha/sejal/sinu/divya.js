@@ -202,5 +202,5 @@ export function autoFormat() {
   });
 }
 export  VarshaElement ;
-export { VarshaElement } ;
-export default VarshaElement ;
+//export { VarshaElement } ;
+//export default VarshaElement ;

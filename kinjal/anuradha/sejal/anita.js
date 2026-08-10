@@ -1,4 +1,5 @@
 // anita.js - Browser Entry Point with Copy Functionality
+console.log("sedual Anita's");
 import { startAutoUpdate, updateAllElements, SUPPORTED_LANGUAGES } from "https://varsha.ingr.in/kinjal/anuradha/sejal/sanju.js";
 //import { startAutoUpdate, updateAllElements, SUPPORTED_LANGUAGES } from "./sanju.js";
 // ============================================

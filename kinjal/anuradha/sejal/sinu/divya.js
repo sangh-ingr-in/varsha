@@ -201,4 +201,4 @@ export function autoFormat() {
     if (el.refresh) el.refresh();
   });
 }
-export { VarshaElement };
+export default { VarshaElement };

@@ -1,0 +1,8 @@
+{
+  "LANGUAGE": "de",
+  "LOCALE": "de-DE",
+  "MONTH_NAMES": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+  "DAY_NAMES": ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+  "SHORT_DAY_NAMES": ["Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"],
+  "SANKHYA_NUMBERS": ["0","1","2","3","4","5","6","7","8","9"]
+}

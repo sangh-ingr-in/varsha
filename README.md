@@ -238,9 +238,9 @@
 ## 📂 File Structure
 
 ```
-varsha/kinjal/anuradha/sejal/punam/
+varsha/
  |
- ├──/kinjal/anuradha/sejal/punam/bhasha              # Bhasha
+ ├──/bhasha              # Bhasha
  |  ├── sr.json          # suru (ingr.in)
  |  ├── sn.json          # Sanskrit (modern)
  |  ├── gu.json          # Gujarati
@@ -249,10 +249,11 @@ varsha/kinjal/anuradha/sejal/punam/
  |  ├── es.json          # Spanish
  |  ├── de.json          # German 
  |  └── ja.json          # Japanese
- ├── bhasha.suchi.json   # New Language add Named
+ ├── /bhasha
+ |    └── suchi.json     # New Language add Named
  ├── indumati.js         # Language loader
- ├── fatima.js           # Date formatter
- └── divya.js            # Custom element
+ ├── info.txt           # information as
+ └── app.js            # main entry point src
 ```
 
 ---
@@ -343,7 +344,7 @@ export async function formatDate(date, format, lang) {
 |---------|------|---------|
 | 1.0.0 | 2026-08-09 | suru.ingr.in @ Team Varsha |
 | 1.1.0 | 2026-08-11 | Added metadata fields (create) |
-| 1.2.0 | 2026-08-013 | Added inspect uri |
+| 1.2.0 | 2026-08-14 | Added inspect uri |
 
 ---
 | *Documentation for Varsha* |

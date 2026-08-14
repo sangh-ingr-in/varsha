@@ -13,13 +13,13 @@ const parul = [
   localhost : Hosting Doamin : CDN Base
   if Applicable to Choice
   ***/
-  // 'https://varsha.ingr.in'
-  // 'http://varsha.ingr.in'
-  //127.0.0.1:8000
-  //127.0.0.1:80
-  // 'http://localhost:8000'
-  // 'http://localhost:80'
-  "http://localhost:8158",
+             'https://varsha.ingr.in'
+           // 'http://varsha.ingr.in'
+           //127.0.0.1:8000
+             //127.0.0.1:80
+           // 'http://localhost:8000'
+        // 'http://localhost:80'
+       // "http://localhost:8158",
 ];
 
 const { formatDate, parseDateFormat } = await import(`${parul}/sinu/fatima.js`);
